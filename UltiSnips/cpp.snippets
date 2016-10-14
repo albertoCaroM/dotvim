@@ -9,20 +9,55 @@ struct ${1:NAME} {
 endsnippet
 
 snippet movable "movable operator c++"
-
  ${1:NameClass}($1 && op) noexcept;  // movable
  $1& operator=($1 && op) noexcept;   //
  $0
+endsnippet
 
+snippet exception "exception"
+  class ${1:NombreException} : public Exception
+  {
+  public:
+    $1() = default;
+    virtual const char* what() const noexcept override { return "$2" "\n"; }
+  };
+  $0
+endsnippet
+
+snippet defaultmovable " default movable operator c++"
+ ${1:NameClass}($1 && op)=default;
+ $1& operator=($1 && op)=default;
+ $0
+endsnippet
+
+
+snippet defaultcopyable "default copyable operator c++"
+    ${1:NameClass}(const $1& op)=default;
+    $1& operator=(const $1& op)=default;
+$0
 endsnippet
 
 
 snippet copyable "copyable operator c++"
-
     ${1:NameClass}(const $1& op);       // and copyable
     $1& operator=(const $1& op);        //
 $0
 endsnippet
+
+snippet nomovable " no movable operator c++"
+ ${1:NameClass}($1 && op)=delete;
+ $1& operator=($1 && op)=delete;
+ $0
+endsnippet
+
+
+snippet nocopyable "copyable operator c++"
+    ${1:NameClass}(const $1& op)=delete;
+    $1& operator=(const $1& op)=delete;
+$0
+endsnippet
+
+
 
 
 

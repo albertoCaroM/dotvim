@@ -105,6 +105,8 @@ endfunction "}}}
 function! CloseWindowOrKillBuffer() "{{{
   let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
 
+
+
   " never bdelete a nerd tree
   if matchstr(expand("%"), 'NERD') == 'NERD'
     wincmd c
@@ -118,6 +120,12 @@ function! CloseWindowOrKillBuffer() "{{{
   endif
 endfunction "}}}
 "}}}
+function! DeleteActualFile()
+:call delete(expand("%"))
+:BD!
+endfunction
+command! DeleteActualFile :call DeleteActualFile()
+
 
 " base configuration {{{
 
@@ -541,7 +549,6 @@ syntax enable
 if has ('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 else
-
   set t_Co=256
 
 endif
@@ -552,11 +559,20 @@ if has('gui_running')
    colorscheme desert
 else
 "  colorscheme zenburn
-   colorscheme OceanicNext
+colorscheme OceanicNext
 endif
 "}}}
 
 set background=dark
+
+function! BuffersCloseButCurrent()
+  let curr = bufnr("%")
+  let last = bufnr("$")
+
+  if curr > 1    | silent! execute "1,".(curr-1)."bd"     | endif
+  if curr < last | silent! execute (curr+1).",".last."bd" | endif
+endfunction
+
 
 "" Fold Asciidoc files at sections and using nested folds for subsections
 " compute the folding level
@@ -594,3 +610,5 @@ autocmd BufRead *.asciidoc normal zR
 
 command! Capitalize :normal!  "_yiwvgU
 
+set showbreak=↳
+set hls

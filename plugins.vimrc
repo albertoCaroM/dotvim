@@ -15,22 +15,26 @@ map g/ <Plug>(incsearch-stay)
 Plug 'sheerun/vim-polyglot' "{{{
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
-
 "}}}
 
 Plug 'junegunn/vim-plug'
+
 Plug 'junegunn/vim-easy-align'
+
 Plug 'honza/vim-snippets'
+
+
 Plug 'SirVer/ultisnips'   "{{{
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"  let g:UltiSnipsSnippetsDir=g:VIMPATH.'/snippets'
+ let g:UltiSnipsSnippetsDir=g:VIMPATH.'/snippets'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "Usnippets"]
 "}}}
 
-if !empty(glob("/usr/bin/python2"))
-  Plug 'Valloric/YouCompleteMe'  , { 'do': 'python2 install.py --clang-complete' ,'tag':'9968a43f7ec058298667c2c56ca86cfbbf1dac51'} "{{{
+" Youcompleteme {{{
+if !empty(glob("/usr/bin/python2")) 
+  Plug 'Valloric/YouCompleteMe'  , { 'do': 'python2 install.py --clang-complete' } 
   let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
   let g:ycm_complete_in_comments_and_strings=0
   let g:ycm_collect_identifiers_from_comments_and_strings = 0
@@ -43,13 +47,12 @@ if !empty(glob("/usr/bin/python2"))
 
   command! YcmFixIt :YcmCompleter FixIt
   command! YcmGetDoc :YcmCompleter GetDoc
-  command! TcmGoToInclude :YcmCompleter GoToInclude
-  command! TcmGoToDeclaration :YcmCompleter GoToDeclaration
-  command! TcmGoToDefinition :YcmCompleter GoToDefinition
-
+  command! YcmGoToInclude :YcmCompleter GoToInclude
+  command! YcmGoToDeclaration :YcmCompleter GoToDeclaration
+  command! YcmGoToDefinition :YcmCompleter GoToDefinition
 else
   if !empty(glob("/usr/bin/python"))
-  Plug 'Valloric/YouCompleteMe'  , { 'do': 'python install.py --clang-complete' ,'tag':'9968a43f7ec058298667c2c56ca86cfbbf1dac51'} "{{{
+  Plug 'Valloric/YouCompleteMe'  , { 'do': 'python install.py --clang-complete' }
 
     let g:ycm_path_to_python_interpreter = '/usr/bin/python'
     let g:ycm_complete_in_comments_and_strings=0
@@ -63,19 +66,12 @@ else
 
     command! YcmFixIt :YcmCompleter FixIt
     command! YcmGetDoc :YcmCompleter GetDoc
-    command! TcmGoToInclude :YcmCompleter GoToInclude
-    command! TcmGoToDeclaration :YcmCompleter GoToDeclaration
-    command! TcmGoToDefinition :YcmCompleter GoToDefinition
-
-
+    command! YcmGoToInclude :YcmCompleter GoToInclude
+    command! YcmGoToDeclaration :YcmCompleter GoToDeclaration
+    command! YcmGoToDefinition :YcmCompleter GoToDefinition
   endif
 endif
-
 "}}}
-
-
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-
 
 if has('nvim')
   " Plug 'benekastah/neomake' "{{{
@@ -85,7 +81,6 @@ if has('nvim')
   " autocmd! BufWritePost * Neomake
   " "}}}
 
-  Plug 'critiqjo/lldb.nvim'
   Plug 'scrooloose/syntastic' "{{{
   let g:syntastic_error_symbol = '✗'
   let g:syntastic_style_error_symbol = '✠'
@@ -109,11 +104,13 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'tpope/vim-abolish'
 
 Plug 'Raimondi/delimitMate'
+
 Plug 'tpope/vim-surround'
 
 Plug 'tpope/vim-repeat'
 
 Plug 'rking/ag.vim'
+
 Plug 'ctrlpvim/ctrlp.vim' "{{{
 let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_max_height=40
@@ -130,19 +127,19 @@ let g:ctrlp_custom_ignore = {
 if executable('ag')
   let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
 endif
-
-nmap \ [ctrlp]
+"
+" nmap \ [ctrlp]
 nnoremap [ctrlp] <nop>
-
-nnoremap [ctrlp]t :CtrlPBufTag<cr>
-nnoremap [ctrlp]T :CtrlPTag<cr>
-nnoremap [ctrlp]l :CtrlPLine<cr>
-nnoremap [ctrlp]o :CtrlPFunky<cr>
-nnoremap [ctrlp]b :CtrlPBuffer<cr>
-command! Buffers  :CtrlPBuffer
-nnoremap <leader>b :Buffers<cr>
-command! MRU      :CtrlPMRUFiles
-"}}}
+"
+" nnoremap [ctrlp]t :CtrlPBufTag<cr>
+" nnoremap [ctrlp]T :CtrlPTag<cr>
+" nnoremap [ctrlp]l :CtrlPLine<cr>
+" nnoremap [ctrlp]o :CtrlPFunky<cr>
+" nnoremap [ctrlp]b :CtrlPBuffer<cr>
+ command! Buffers  :CtrlPBuffer
+ nnoremap <leader>b :Buffers<cr>
+ command! MRU      :CtrlPMRUFiles
+" "}}}
 
 Plug 'noahfrederick/vim-skeleton' "{{{
 let g:skeleton_template_dir = g:VIMPATH . "/templates"
@@ -152,7 +149,9 @@ function! g:skeleton_replacements.CHEADERNAME()
   return s:inc."_H_"
 endfunction
 "}}}
+
 Plug 'vim-scripts/doxygen-support.vim'
+
 Plug 'vim-scripts/DoxygenToolkit.vim' "{{{
 
 let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
@@ -165,14 +164,6 @@ let g:DoxygenToolkit_authorName= g:author
 
 Plug 'mhinz/vim-signify'
 
-
-Plug  'gregsexton/gitv' "{{{
-nnoremap <silent> <leader>gv :Gitv<CR>
-nnoremap <silent> <leader>gV :Gitv!<CR>
-
-"}}}
-
-
 Plug 'tpope/vim-endwise'
 
 Plug 'terryma/vim-expand-region' "{{{
@@ -180,37 +171,19 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 "}}}
 
-
 Plug 'terryma/vim-multiple-cursors',{'tag':'b1121df3c627dc3dc21356ba440e68b9458c083a'} "{{{
 let g:multi_cursor_exit_from_insert_mode = 0
 "}}}
 
 Plug 'tomtom/tcomment_vim'
+"Plug 'tpope/vim-commentary'
+
 Plug 'chrisbra/NrrwRgn'
+
 Plug 'junegunn/vim-easy-align'"{{{
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 "}}}
-
-
-" Plug 'godlygeek/tabular' "{{{
-" "autocmd MyAutoCmd VimEnter * Tabularize
-" nmap <Leader>a& :Tabularize /&<CR>
-" vmap <Leader>a& :Tabularize /&<CR>
-" nmap <Leader>a= :Tabularize /=<CR>
-" vmap <Leader>a= :Tabularize /=<CR>
-" nmap <Leader>a: :Tabularize /:<CR>
-" vmap <Leader>a: :Tabularize /:<CR>
-" nmap <Leader>a:: :Tabularize /:\zs<CR>
-" vmap <Leader>a:: :Tabularize /:\zs<CR>
-" nmap <Leader>a, :Tabularize /,<CR>
-" vmap <Leader>a, :Tabularize /,<CR>
-" nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-" vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-" vmap <Leader>ad :Tabularize /\/\/\/<<CR>
-" "}}}
-
-
 
 Plug 'vim-airline/vim-airline'  "{{{
 let g:airline#extensions#tabline#enabled = 1
@@ -234,7 +207,6 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 "}}}
 
-
 Plug 'mbbill/undotree' "{{{
 "autocmd MyAutoCmd VimEnter * UndotreeToggle
 let g:undotree_WindowLayout='botright'
@@ -256,15 +228,10 @@ let g:indent_guides_color_change_percent=3
 "}}}
 
 Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'wellle/tmux-complete.vim' "{{{
 let g:tmuxcomplete#trigger = 'omnifunc'
 "}}}
-
-Plug 'benmills/vimux' "{{{
-map <leader>x :VimuxPromptCommand<CR>
-"}}}
-
-
 
 Plug 'aklt/plantuml-syntax' "{{{
 let g:plantuml_executable_script='java -jar /opt/plantuml/plantuml.jar'
@@ -283,30 +250,11 @@ let g:startify_show_sessions = 1
 "
 Plug 'embear/vim-localvimrc'
 
-
-
 Plug 'kshenoy/vim-signature'
 
 Plug 'hail2u/vim-css3-syntax'
 
-
-
-
-" Plug 'plasticboy/vim-markdown',{ 'for': ['markdown', 'mkd'] }
-
-
 Plug 'jelera/vim-javascript-syntax'
-
-
-
-if  executable('instant-markdown-d')  "{{{
-  " "[sudo] npm -g install instant-markdown-d
-  "if executable('redcarpet') && executable('instant-markdown-d')
-  "# "If you're on Linux, the xdg-utils package needs to be installed (is installed by default on Ubuntu).
-  Plug  'suan/vim-instant-markdown' ,{ 'for': ['markdown', 'mkd'] }
-endif
-"}}}
-
 
 Plug 'cespare/vim-toml',{'for': 'toml'}
 
@@ -314,57 +262,19 @@ Plug 'elzr/vim-json',{'for': 'json'}
 
 Plug 'tpope/vim-sleuth'
 
-Plug 'lambdalisue/vim-gita' "{{{
-nnoremap <silent> [Space]gs  :<C-u>Gita status<CR>
-nnoremap <silent> [Space]gc  :<C-u>Gita commit<CR>
-nnoremap <silent> [Space]ga  :<C-u>Gita commit --amend<CR>
-nnoremap <silent> [Space]gd  :<C-u>Gita diff<CR>
-nnoremap <silent> [Space]gb  :<C-u>Gita browse<CR>
-nnoremap <silent> [Space]gl  :<C-u>Gita blame<CR>
-let gita#features#commit#enable_default_mappings = 0
-"}}}
-
 Plug 'wesgibbs/vim-irblack'
+
 Plug 'vim-scripts/wombat256.vim'
-
-" Plug 'osyo-manga/vim-jplus' "{{{
-" nmap J <Plug>(jplus)
-" vmap J <Plug>(jplus)
-" "}}}
-
-
-" Plug 'soramugi/auto-ctags.vim', { 'for' : ['c' , 'cpp'] } "{{{
-" let g:auto_ctags_directory_list = ['.git', '.svn']
-" let g:auto_ctags_tags_name = 'tags'
-" let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
-" "}}}
-"
 
 Plug 'vim-scripts/a.vim' , { 'for' : ['c' , 'cpp'] }
 
-
-"Plug 'easymotion/vim-easymotion' "{{{
-"nmap w <Plug>(easymotion-lineforward)
-"nnoremap W     w
-"nmap b <Plug>(easymotion-linebackward)
-"nnoremap B     b
-"nmap <leader>j <Plug>(easymotion-j)
-"nmap <leader>k <Plug>(easymotion-k)
-"nmap <leader>' <Plug>(easymotion-prefix)
-
-"let g:EasyMotion_startofline = 0
-"let g:EasyMotion_show_prompt = 1
-"let g:EasyMotion_verbose = 0
-""}}}
-Plug 'chrisbra/NrrwRgn'
-" Plug 'craigemery/vim-autotag'
 Plug 'chrisbra/vim-diff-enhanced' "{{{
 let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 "}}}
+
 Plug 'majutsushi/tagbar' "{{{
 nnoremap<leader>t :TagbarToggle<cr>
 "}}}
-
 
 Plug 'ryanoasis/vim-devicons'   "{{{
 set encoding=utf8
@@ -374,13 +284,17 @@ let g:webdevicons_enable_ctrlp = 1
 let g:WebDevIconsUnicodeDecorateFileNodes = 1
 let g:airline_powerline_fonts = 1
 "}}}
+
 Plug 'vim-scripts/SyntaxRange'
 
+Plug 'tmux-plugins/vim-tmux-focus-events' "{{{
+let g:formatterpath = ['/usr/bin/clang-format-3.8', '']
+"}}}
 
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'Chiel92/vim-autoformat'
 Plug 'dhruvasagar/vim-table-mode'
+
 Plug 'mhartington/oceanic-next'
+
 Plug 'scrooloose/nerdtree' "{{{
 
 "let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -401,8 +315,8 @@ call NERDTreeHighlightFile('cpp', 'yellow', 'none', '#d8a235', 'none')
 call NERDTreeHighlightFile('json', 'green', 'none', '#d8a235', 'none')
 
 "}}}
-Plug 'jistr/vim-nerdtree-tabs'
-"{{{
+
+Plug 'jistr/vim-nerdtree-tabs' "{{{
 let g:tex_fold_enabled=1
 let g:vimsyn_folding='af'
 let g:xml_syntax_folding = 1
@@ -414,21 +328,26 @@ let g:vim_fold = 1
 
 "}}}
 
-
 Plug 'easymotion/vim-easymotion'
+
 Plug 'vim-scripts/Conque-GDB' "{{{
 let g:ConqueGdb_Leader = '-'
 ""}}}
 
 Plug 'Valloric/MatchTagAlways'
+
 Plug  'Xuyuanp/nerdtree-git-plugin'
+
 Plug 'jreybert/vimagit'
+
 Plug 'quark-zju/vim-cpp-auto-include' "{{{
 command! Includes      :ruby CppAutoInclude::process
 "}}}
 "
 Plug 'dagwieers/asciidoc-vim'
+
 Plug 'vim-scripts/ingo-library'
+
 Plug 'vim-scripts/SyntaxRange' "{{{
 
 function! AsciidocEnableSyntaxRanges()
@@ -477,9 +396,10 @@ endfunction
 call MarkdownEnableSyntaxRanges()
 
 "}}}
+
 Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
-"{{{
+
+Plug 'mattn/gist-vim' "{{{
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
 if has("mac")
@@ -492,52 +412,40 @@ elseif has("win32")
 endif
 "}}}
 
-
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" Plug 'Shougo/unite.vim'
-" Plug 'rstacruz/vim-fastunite'
-"
-" Plug 'Shougo/neomru.vim'
-" Plug 'Shougo/unite-outline'
-" Plug 'tsukkee/unite-tag'
-"
-"
+
 Plug 'Konfekt/FastFold'
 
-
-Plug 'tmhedberg/SimpylFold'
-"{{{
+Plug 'tmhedberg/SimpylFold' "{{{
 let g:SimpylFold_docstring_preview=1
 "}}}
-"
 
-
-Plug 'nvie/vim-flake8'
-"{{{
+Plug 'nvie/vim-flake8' "{{{
 let python_highlight_all=1
 syntax on
 "}}}
 
-
 Plug 'jnurmine/Zenburn'
+
 Plug 'altercation/vim-colors-solarized'
 
 Plug 'vim-scripts/Pydiction'
-" Plug 'ervandew/supertab'
-
 
 Plug 'bronson/vim-trailing-whitespace'
 
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+
 Plug 'Shougo/unite.vim'
-" Plug 'rstacruz/vim-fastunite'
 
 Plug 'Shougo/neomru.vim'
+
 Plug 'Shougo/unite-outline'
+
 Plug 'tsukkee/unite-tag'
+
 Plug 'mattn/unite-gist'
-Plug 'thinca/vim-unite-history'
-"{{{
+
+Plug 'thinca/vim-unite-history' "{{{
 " Unite
 nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
 " nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
@@ -557,11 +465,24 @@ function! s:unite_settings()
 endfunction
 "}}}
 
+Plug 'rhysd/vim-clang-format'
 
-Plug 'Chiel92/vim-autoformat'
 Plug 'rhysd/clever-f.vim'
+
 Plug 'mtth/scratch.vim'
+
 Plug 'google/vim-ft-bzl'
 
-
 Plug 'editorconfig/editorconfig-vim'
+
+Plug 'rhysd/vim-clang-format' "{{{
+autocmd FileType c ClangFormatAutoEnable
+autocmd FileType cpp ClangFormatAutoEnable
+"}}}
+Plug 'tpope/vim-dispatch'
+Plug 'alepez/vim-gtest'"{{{
+:let g:gtest#highlight_failing_tests = 1
+"}}}
+
+Plug 'ciaranm/googletest-syntax'
+
