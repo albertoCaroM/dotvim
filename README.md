@@ -1,4 +1,13 @@
-# dotvim
+# INSTRUCTIONS
+
+choose auto or manual configuration no both.
+
+## Auto-configuration
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/albertoCaroM/dotvim/master/configure.sh)"
+
+
+## Manual-configuration
 ```
 git clone https://github.com/albertoCaroM/dotvim ~/.vim 
 install -d ~/.config 
