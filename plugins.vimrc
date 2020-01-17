@@ -23,7 +23,10 @@ Plug 'junegunn/vim-easy-align'
 
 Plug 'honza/vim-snippets'
 
+Plug 'norcalli/nvim-colorizer.lua'
 
+Plug 'jpalardy/vim-slime'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'SirVer/ultisnips'   "{{{
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -32,70 +35,62 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "Usnippets"]
 "}}}
 
-" Youcompleteme {{{
-if !empty(glob("/usr/bin/python2")) 
-  Plug 'Valloric/YouCompleteMe'  , { 'do': 'python2 install.py --clang-complete' } 
-  let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
-  let g:ycm_complete_in_comments_and_strings=0
-  let g:ycm_collect_identifiers_from_comments_and_strings = 0
-  let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-  let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-  let g:ycm_filetype_blacklist={'unite': 1}
-  let g:ycm_min_num_of_chars_for_completion = 2
-  let g:ycm_open_loclist_on_ycm_diags = 1
-  noremap <leader>F :YcmCompleter FixIt<cr>
+" " Youcompleteme {{{
+" Plug 'Valloric/YouCompleteMe'  , { 'do': 'python install.py --clang-complete' }
+"
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" let g:ycm_complete_in_comments_and_strings=0
+" let g:ycm_collect_identifiers_from_comments_and_strings = 0
+" let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+" let g:ycm_filetype_blacklist={'unite': 1}
+" let g:ycm_min_num_of_chars_for_completion = 2
+" let g:ycm_open_loclist_on_ycm_diags = 1
+" noremap <leader>F :YcmCompleter FixIt<cr>
+"
+" command! YcmFixIt :YcmCompleter FixIt
+" command! YcmGetDoc :YcmCompleter GetDoc
+" command! YcmGoToInclude :YcmCompleter GoToInclude
+" command! YcmGoToDeclaration :YcmCompleter GoToDeclaration
+" command! YcmGoToDefinition :YcmCompleter GoToDefinition
+" "}}}
 
-  command! YcmFixIt :YcmCompleter FixIt
-  command! YcmGetDoc :YcmCompleter GetDoc
-  command! YcmGoToInclude :YcmCompleter GoToInclude
-  command! YcmGoToDeclaration :YcmCompleter GoToDeclaration
-  command! YcmGoToDefinition :YcmCompleter GoToDefinition
-else
-  if !empty(glob("/usr/bin/python"))
-  Plug 'Valloric/YouCompleteMe'  , { 'do': 'python install.py --clang-complete' }
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'mattn/vim-lsp-settings'
+" Plug 'thomasfaingnaert/vim-lsp-snippets'
+" Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+" Plug 'liuchengxu/vista.vim'
+" "
+"" Plug 'natebosch/vim-lsc'
+" Plug 'ajh17/VimCompletesMe'
 
-    let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-    let g:ycm_complete_in_comments_and_strings=0
-    let g:ycm_collect_identifiers_from_comments_and_strings = 0
-    let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-    let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-    let g:ycm_filetype_blacklist={'unite': 1}
-    let g:ycm_min_num_of_chars_for_completion = 2
-    let g:ycm_open_loclist_on_ycm_diags = 1
-    noremap <leader>F :YcmCompleter FixIt<cr>
-
-    command! YcmFixIt :YcmCompleter FixIt
-    command! YcmGetDoc :YcmCompleter GetDoc
-    command! YcmGoToInclude :YcmCompleter GoToInclude
-    command! YcmGoToDeclaration :YcmCompleter GoToDeclaration
-    command! YcmGoToDefinition :YcmCompleter GoToDefinition
-  endif
-endif
-"}}}
-
-if has('nvim')
-  " Plug 'benekastah/neomake' "{{{
-  " autocmd MyAutoCmd BufWritePost,BufEnter *.c,*.h Neomake
-  " autocmd MyAutoCmd InsertChange,TextChanged *.c,*.h update | Neomake
-  "
-  " autocmd! BufWritePost * Neomake
-  " "}}}
-
-  Plug 'scrooloose/syntastic' "{{{
-  let g:syntastic_error_symbol = '✗'
-  let g:syntastic_style_error_symbol = '✠'
-  let g:syntastic_warning_symbol = '∆'
-  let g:syntastic_style_warning_symbol = '≈'
-  "}}}
-
-else
-  Plug 'scrooloose/syntastic' "{{{
-  let g:syntastic_error_symbol = '✗'
-  let g:syntastic_style_error_symbol = '✠'
-  let g:syntastic_warning_symbol = '∆'
-  let g:syntastic_style_warning_symbol = '≈'
-  "}}}
-endif
+Plug 'dense-analysis/ale'
+" if has('nvim')
+"   " Plug 'benekastah/neomake' "{{{
+"   " autocmd MyAutoCmd BufWritePost,BufEnter *.c,*.h Neomake
+"   " autocmd MyAutoCmd InsertChange,TextChanged *.c,*.h update | Neomake
+"   "
+"   " autocmd! BufWritePost * Neomake
+"   " "}}}
+"
+"   Plug 'scrooloose/syntastic' "{{{
+"   let g:syntastic_error_symbol = '✗'
+"   let g:syntastic_style_error_symbol = '✠'
+"   let g:syntastic_warning_symbol = '∆'
+"   let g:syntastic_style_warning_symbol = '≈'
+"   "}}}
+"
+" else
+"   Plug 'scrooloose/syntastic' "{{{
+"   let g:syntastic_error_symbol = '✗'
+"   let g:syntastic_style_error_symbol = '✠'
+"   let g:syntastic_warning_symbol = '∆'
+"   let g:syntastic_style_warning_symbol = '≈'
+"   "}}}
+" endif
 
 Plug 'vim-scripts/wombat256.vim'
 
@@ -239,8 +234,8 @@ let g:plantuml_executable_script='java -jar /opt/plantuml/plantuml.jar'
 au FileType * execute 'setlocal dict+='.g:VIMPATH .'/words/' .&filetype.'.adoc'
 "}}}
 
-Plug 'bufkill.vim'
-
+" Plug 'bufkill.vim'
+Plug 'rstacruz/vim-remux'
 Plug 'mhinz/vim-startify' "{{{
 
 let g:startify_session_dir = VIMPATH . '/sessions'
@@ -330,19 +325,12 @@ let g:vim_fold = 1
 
 Plug 'easymotion/vim-easymotion'
 
-Plug 'vim-scripts/Conque-GDB' "{{{
-let g:ConqueGdb_Leader = '-'
-""}}}
-
 Plug 'Valloric/MatchTagAlways'
 
 Plug  'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'jreybert/vimagit'
 
-Plug 'quark-zju/vim-cpp-auto-include' "{{{
-command! Includes      :ruby CppAutoInclude::process
-"}}}
 "
 Plug 'dagwieers/asciidoc-vim'
 
