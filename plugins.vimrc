@@ -19,63 +19,38 @@ let g:cpp_experimental_template_highlight = 1
 
 Plug 'junegunn/vim-plug'
 
-Plug 'junegunn/vim-easy-align'
 
 Plug 'honza/vim-snippets'
 
-Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'jpalardy/vim-slime'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'SirVer/ultisnips'   "{{{
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
- let g:UltiSnipsSnippetsDir=g:VIMPATH.'/snippets'
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" " better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
+
+
+
+let g:UltiSnipsSnippetsDir=g:VIMPATH.'/snippets'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "Usnippets"]
+
+
+
+
+
+
 "}}}
 
-" " Youcompleteme {{{
-" Plug 'Valloric/YouCompleteMe'  , { 'do': 'python install.py --clang-complete' }
-"
-" let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-" let g:ycm_complete_in_comments_and_strings=0
-" let g:ycm_collect_identifiers_from_comments_and_strings = 0
-" let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-" let g:ycm_filetype_blacklist={'unite': 1}
-" let g:ycm_min_num_of_chars_for_completion = 2
-" let g:ycm_open_loclist_on_ycm_diags = 1
-" noremap <leader>F :YcmCompleter FixIt<cr>
-"
-" command! YcmFixIt :YcmCompleter FixIt
-" command! YcmGetDoc :YcmCompleter GetDoc
-" command! YcmGoToInclude :YcmCompleter GoToInclude
-" command! YcmGoToDeclaration :YcmCompleter GoToDeclaration
-" command! YcmGoToDefinition :YcmCompleter GoToDefinition
-" "}}}
-
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'mattn/vim-lsp-settings'
-" Plug 'thomasfaingnaert/vim-lsp-snippets'
-" Plug 'thomasfaingnaert/vim-lsp-ultisnips'
-" Plug 'liuchengxu/vista.vim'
-" "
-"" Plug 'natebosch/vim-lsc'
-" Plug 'ajh17/VimCompletesMe'
-
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " if has('nvim')
-"   " Plug 'benekastah/neomake' "{{{
-"   " autocmd MyAutoCmd BufWritePost,BufEnter *.c,*.h Neomake
-"   " autocmd MyAutoCmd InsertChange,TextChanged *.c,*.h update | Neomake
-"   "
-"   " autocmd! BufWritePost * Neomake
-"   " "}}}
-"
+
 "   Plug 'scrooloose/syntastic' "{{{
 "   let g:syntastic_error_symbol = '✗'
 "   let g:syntastic_style_error_symbol = '✠'
@@ -106,7 +81,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'rking/ag.vim'
 
-Plug 'ctrlpvim/ctrlp.vim' "{{{
+Plug 'ctrlpvim/ctrlp.vim' 
 let g:ctrlp_clear_cache_on_exit=1
 let g:ctrlp_max_height=40
 let g:ctrlp_show_hidden=1
@@ -131,10 +106,10 @@ nnoremap [ctrlp] <nop>
 " nnoremap [ctrlp]l :CtrlPLine<cr>
 " nnoremap [ctrlp]o :CtrlPFunky<cr>
 " nnoremap [ctrlp]b :CtrlPBuffer<cr>
- command! Buffers  :CtrlPBuffer
- nnoremap <leader>b :Buffers<cr>
- command! MRU      :CtrlPMRUFiles
-" "}}}
+command! Buffers  :CtrlPBuffer
+nnoremap <leader>b :Buffers<cr>
+command! MRU      :CtrlPMRUFiles
+" 
 
 Plug 'noahfrederick/vim-skeleton' "{{{
 let g:skeleton_template_dir = g:VIMPATH . "/templates"
@@ -174,11 +149,6 @@ Plug 'tomtom/tcomment_vim'
 "Plug 'tpope/vim-commentary'
 
 Plug 'chrisbra/NrrwRgn'
-
-Plug 'junegunn/vim-easy-align'"{{{
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
-"}}}
 
 Plug 'vim-airline/vim-airline'  "{{{
 let g:airline#extensions#tabline#enabled = 1
@@ -235,7 +205,6 @@ au FileType * execute 'setlocal dict+='.g:VIMPATH .'/words/' .&filetype.'.adoc'
 "}}}
 
 " Plug 'bufkill.vim'
-Plug 'rstacruz/vim-remux'
 Plug 'mhinz/vim-startify' "{{{
 
 let g:startify_session_dir = VIMPATH . '/sessions'
@@ -244,8 +213,6 @@ let g:startify_show_sessions = 1
 "}}}
 "
 Plug 'embear/vim-localvimrc'
-
-Plug 'kshenoy/vim-signature'
 
 Plug 'hail2u/vim-css3-syntax'
 
@@ -256,8 +223,6 @@ Plug 'cespare/vim-toml',{'for': 'toml'}
 Plug 'elzr/vim-json',{'for': 'json'}
 
 Plug 'tpope/vim-sleuth'
-
-Plug 'wesgibbs/vim-irblack'
 
 Plug 'vim-scripts/wombat256.vim'
 
@@ -280,13 +245,11 @@ let g:WebDevIconsUnicodeDecorateFileNodes = 1
 let g:airline_powerline_fonts = 1
 "}}}
 
-Plug 'vim-scripts/SyntaxRange'
 
 Plug 'tmux-plugins/vim-tmux-focus-events' "{{{
 let g:formatterpath = ['/usr/bin/clang-format-3.8', '']
 "}}}
 
-Plug 'dhruvasagar/vim-table-mode'
 
 Plug 'mhartington/oceanic-next'
 
@@ -323,20 +286,44 @@ let g:vim_fold = 1
 
 "}}}
 
-Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'"{{{
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+"}}}
+
+
+
 
 Plug 'Valloric/MatchTagAlways'
 
-Plug  'Xuyuanp/nerdtree-git-plugin'
+Plug  'Xuyuanp/nerdtree-git-plugin' "{{{
+let g:NERDTreeIndicatorMapCustom = {
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ "Ignored"   : "☒",
+      \ "Unknown"   : "?"
+      \ }
+"}}}
 
 Plug 'jreybert/vimagit'
-
-"
-Plug 'dagwieers/asciidoc-vim'
-
-Plug 'vim-scripts/ingo-library'
-
-Plug 'vim-scripts/SyntaxRange' "{{{
 
 function! AsciidocEnableSyntaxRanges()
   " source block syntax highlighting
@@ -385,81 +372,21 @@ call MarkdownEnableSyntaxRanges()
 
 "}}}
 
-Plug 'mattn/webapi-vim'
-
-Plug 'mattn/gist-vim' "{{{
-let g:gist_show_privates = 1
-let g:gist_post_private = 1
-if has("mac")
-let g:gist_clip_command = 'pbcopy'
-  nmap mate :w<CR>:!mate %<CR>
-elseif has("unix")
-let g:gist_clip_command = 'xclip -selection clipboard'
-elseif has("win32")
-  " TODO
-endif
+Plug 'Konfekt/FastFold' "{{{
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
 "}}}
 
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
-Plug 'Konfekt/FastFold'
-
-Plug 'tmhedberg/SimpylFold' "{{{
-let g:SimpylFold_docstring_preview=1
-"}}}
-
-Plug 'nvie/vim-flake8' "{{{
-let python_highlight_all=1
-syntax on
-"}}}
-
-Plug 'jnurmine/Zenburn'
-
-Plug 'altercation/vim-colors-solarized'
-
-Plug 'vim-scripts/Pydiction'
-
-Plug 'bronson/vim-trailing-whitespace'
-
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
-Plug 'Shougo/unite.vim'
-
-Plug 'Shougo/neomru.vim'
-
-Plug 'Shougo/unite-outline'
-
-Plug 'tsukkee/unite-tag'
-
-Plug 'mattn/unite-gist'
-
-Plug 'thinca/vim-unite-history' "{{{
-" Unite
-nnoremap <leader>t :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-" nnoremap <leader>f :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-nnoremap <leader>r :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-nnoremap <leader>y :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-nnoremap <leader>e :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-  " Play nice with supertab
-  let b:SuperTabDisabled=1
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-n>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-p>   <Plug>(unite_select_previous_line)
-endfunction
-"}}}
-
-Plug 'rhysd/vim-clang-format'
-
-Plug 'rhysd/clever-f.vim'
-
-Plug 'mtth/scratch.vim'
-
-Plug 'google/vim-ft-bzl'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -467,10 +394,8 @@ Plug 'rhysd/vim-clang-format' "{{{
 autocmd FileType c ClangFormatAutoEnable
 autocmd FileType cpp ClangFormatAutoEnable
 "}}}
-Plug 'tpope/vim-dispatch'
-Plug 'alepez/vim-gtest'"{{{
-:let g:gtest#highlight_failing_tests = 1
-"}}}
+" Plug 'tpope/vim-dispatch'
+
 
 Plug 'ciaranm/googletest-syntax'
 
