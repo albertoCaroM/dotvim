@@ -304,7 +304,12 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 "}}}
 
 
+Plug 'tpope/vim-dispatch'
 
+Plug 'alepez/vim-gtest' "{{{
+"
+let g:gtest#highlight_failing_tests = 1
+"}}}
 
 Plug 'Valloric/MatchTagAlways'
 
@@ -397,5 +402,11 @@ autocmd FileType cpp ClangFormatAutoEnable
 " Plug 'tpope/vim-dispatch'
 
 
-Plug 'ciaranm/googletest-syntax'
+Plug 'dense-analysis/ale' "{{{
+let g:airline#extensions#ale#enabled = 1
+
+""}}}
+
+
+" Plug 'ciaranm/googletest-syntax'
 

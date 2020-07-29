@@ -603,3 +603,26 @@ command! Capitalize :normal!  "_yiwvgU
 set showbreak=↳
 set hls
 
+
+
+
+let g:gtest#gtest_command = ""
+function! ACMGTestCmd(gtest_command)
+  let g:acm#gtest_command = a:gtest_command
+endfunction
+
+
+function! ACMGTEST()
+  let oldmakeprg = &makeprg
+  let olderrorformat=&errorformat
+  set errorformat=%f:%l:\ %m
+  let &makeprg=g:acm#gtest_command
+  silent execute ":make"
+  let &makeprg=oldmakeprg
+  let &errorformat=olderrorformat
+  silent execute ":copen"
+  silent execute ":redraw!"
+endfunction
+
+command! AcmGTest :call ACMGTEST()
+command! -nargs=1 -complete=file AcmGTestCmd call ACMGTestCmd(<f-args>)
