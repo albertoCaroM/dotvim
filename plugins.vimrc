@@ -19,34 +19,15 @@ let g:cpp_experimental_template_highlight = 1
 
 Plug 'junegunn/vim-plug'
 
+Plug 'chase/vim-ansible-yaml'
+
 
 Plug 'honza/vim-snippets'
+Plug 'junegunn/vim-peekaboo'
+
 
 
 Plug 'jpalardy/vim-slime'
-Plug 'ycm-core/YouCompleteMe'
-Plug 'SirVer/ultisnips'   "{{{
-
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-" " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
-
-
-
-let g:UltiSnipsSnippetsDir=g:VIMPATH.'/snippets'
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "Usnippets"]
-
-
-
-
-
-
-"}}}
 
 " Plug 'dense-analysis/ale'
 " if has('nvim')
@@ -71,7 +52,7 @@ Plug 'vim-scripts/wombat256.vim'
 
 Plug 'vim-scripts/matchit.zip'
 
-Plug 'tpope/vim-abolish'
+" Plug 'tpope/vim-abolish'
 
 Plug 'Raimondi/delimitMate'
 
@@ -222,7 +203,7 @@ Plug 'cespare/vim-toml',{'for': 'toml'}
 
 Plug 'elzr/vim-json',{'for': 'json'}
 
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 
 Plug 'vim-scripts/wombat256.vim'
 
@@ -306,27 +287,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 Plug 'tpope/vim-dispatch'
 
-Plug 'alepez/vim-gtest' "{{{
-"
-let g:gtest#highlight_failing_tests = 1
-"}}}
 
-Plug 'Valloric/MatchTagAlways'
-
-Plug  'Xuyuanp/nerdtree-git-plugin' "{{{
-let g:NERDTreeIndicatorMapCustom = {
-      \ "Modified"  : "✹",
-      \ "Staged"    : "✚",
-      \ "Untracked" : "✭",
-      \ "Renamed"   : "➜",
-      \ "Unmerged"  : "═",
-      \ "Deleted"   : "✖",
-      \ "Dirty"     : "✗",
-      \ "Clean"     : "✔︎",
-      \ "Ignored"   : "☒",
-      \ "Unknown"   : "?"
-      \ }
-"}}}
 
 Plug 'jreybert/vimagit'
 
