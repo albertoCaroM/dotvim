@@ -176,7 +176,8 @@ let &tabstop=s:settings.default_indent              "number of spaces per tab fo
 let &softtabstop=s:settings.default_indent          "number of spaces per tab in insert mode
 let &shiftwidth=s:settings.default_indent           "number of spaces when indenting
 set list                                            "highlight whitespace
-set listchars=tab:│\ ,trail:•,extends:❯,precedes:❮
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,conceal:Δ
+set list
 set shiftround
 set linebreak
 let &showbreak='↪ '
@@ -594,6 +595,19 @@ autocmd Syntax asciidoc setlocal foldmethod=expr
 " start with text unfolded all the way
 autocmd BufRead *.adoc normal zR
 autocmd BufRead *.asciidoc normal zR
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
+
+
+
+function CleanCurrentFile()
+	%s/\%ua0/ /g
+endfunction
+command! CleanCurrentFile :call CleanCurrentFile()
+
+
+
+
 " TODO following does not work as folding is lost up reloading
 " autocmd Syntax asciidoc normal zR
 
@@ -604,7 +618,11 @@ set showbreak=↳
 set hls
 
 
-
+" if has('gui_running')
+"     set listchars=tab:▶\ ,trail:·,extends:\#,nbsp:.
+" else
+"     set listchars=tab:>.,trail:.,extends:\#,nbsp:.
+" endif
 
 let g:gtest#gtest_command = ""
 function! ACMGTestCmd(gtest_command)
