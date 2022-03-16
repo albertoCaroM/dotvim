@@ -177,6 +177,7 @@ let &softtabstop=s:settings.default_indent          "number of spaces per tab in
 let &shiftwidth=s:settings.default_indent           "number of spaces when indenting
 set list                                            "highlight whitespace
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,conceal:Δ
+
 set list
 set shiftround
 set linebreak
@@ -644,3 +645,7 @@ endfunction
 
 command! AcmGTest :call ACMGTEST()
 command! -nargs=1 -complete=file AcmGTestCmd call ACMGTestCmd(<f-args>)
+
+" set <Esc><Esc> as keybinding to go terminal normal mode
+tnoremap <Esc><Esc> <C-w>N 
+	
